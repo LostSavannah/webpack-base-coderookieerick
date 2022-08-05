@@ -2,12 +2,16 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('css-minimizer-webpack-plugin');
+
 module.exports = {
     ///Sets the mode to development
-    mode: "development",
+    mode: "production",
     //Confugu
     output:{
         clean: true,
+        filename: "main.[contenthash].js"
     },
     module:{
         rules:[
@@ -34,7 +38,11 @@ module.exports = {
         ],
     },
     optimization:{
-
+        minimize: true,
+        minimizer: [
+            new CssMinimizerPlugin(),
+            new TerserPlugin()
+        ]
     },
     plugins:[
         new HtmlWebpackPlugin({
@@ -42,7 +50,7 @@ module.exports = {
             template: "./src/index.html"
         }),
         new MiniCssExtractPlugin({
-            filename:'[name].css'
+            filename:'[name].[fullhash].css'
         }),
         new CopyWebpackPlugin({
             patterns:[
