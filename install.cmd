@@ -5,5 +5,7 @@ cmd /C npm install -D mini-css-extract-plugin
 cmd /C npm install -D file-loader
 cmd /C npm install -D copy-webpack-plugin
 
-::Optimizaciones
+::Prod
 cmd /C npm install -D css-minimizer-webpack-plugin terser-webpack-plugin
+cmd /C npm install -D babel-loader @babel/core
+cmd /C npm install -D @babel/preset-env

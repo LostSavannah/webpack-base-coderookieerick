@@ -35,6 +35,16 @@ module.exports = {
                 test: /style.css$/i,
                 use: [MiniCssExtractPlugin.loader, 'css-loader']
             },
+            {
+                test: /\.m?js$/,
+                exclude: '/node_modules/',
+                use: {
+                    loader: "babel-loader",
+                    options:{
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            }
         ],
     },
     optimization:{
@@ -45,13 +55,16 @@ module.exports = {
         ]
     },
     plugins:[
+        //No recuerdo
         new HtmlWebpackPlugin({
             title: "Test",
             template: "./src/index.html"
         }),
+        //Importa css globales
         new MiniCssExtractPlugin({
             filename:'[name].[fullhash].css'
         }),
+        //Copia rutas a la carpeta de distribución
         new CopyWebpackPlugin({
             patterns:[
                 {from: "src/assets", to: "assets"},
