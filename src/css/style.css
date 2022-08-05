@@ -1,0 +1,17 @@
+*{
+    font-family: candara;
+}
+
+header{
+    font-size: 2em;
+}
+
+html, body{
+    margin: 0;
+    color: red;   
+}
+
+img{
+    width: 50px;
+    height: auto;
+}
